@@ -5,18 +5,18 @@ using namespace std;
 
 //default constructor
 Student::Student() {
-    studentID = 0000;
+    studentID = "0000";
     firstName = "no name entered";
     lastName = "no name entered";
     email = "no email entered";
-    age = 0000;
+    age = "0000";
     degreeTypes = 0000;
 };
 //destructor
 Student::~Student() {
 };
 //getters
-int Student::getStudentIDFunc() {
+string Student::getStudentIDFunc() {
     return studentID;
 };
 string Student::getFirstNameFunc() {
@@ -28,7 +28,7 @@ string Student::getLastNameFunc() {
 string Student::getEmailFunc() {
     return email;
 };
-int Student::getAgeFunc() {
+string Student::getAgeFunc() {
     return age;
 };
 int Student::getNumDaysFunc(int *numDays) {
@@ -38,24 +38,24 @@ int Student::getDegreeTypesFunc() {
     return degreeTypes;
 };
 //setters
-int Student::setStudentIDFunc(int idIn) {
-    return studentID = idIn;;
+void Student::setStudentIDFunc(string idIn) {
+    studentID = idIn;;
 };
-string Student::setFirstNameFunc(string nameFirst) {
-    return firstName = nameFirst;
+void Student::setFirstNameFunc(string nameFirst) {
+    firstName = nameFirst;
 };
-string Student::setLastNameFunc(string nameLast) {
-    return lastName = nameLast;
+void Student::setLastNameFunc(string nameLast) {
+    lastName = nameLast;
 };
-string Student::setEmailFunc(string enteredMail) {
-    return email = enteredMail;
+void Student::setEmailFunc(string enteredMail) {
+    email = enteredMail;
 };
-int Student::setAgeFunc(int ageIn) {
-    return age = ageIn;
+void Student::setAgeFunc(string ageIn) {
+    age = ageIn;
 };
-int Student::setNumDaysFunc(int daysIn) {
-    return numDays = daysIn;
+void Student::setNumDaysFunc(int daysIn) {
+    numDays = daysIn;
 };
-int Student::setDegreeTypesFunc(int degreeIn) {
-    return degreeTypes = degreeIn;
+void Student::setDegreeTypesFunc(int degreeIn) {
+    degreeTypes = degreeIn;
 };

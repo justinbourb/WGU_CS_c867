@@ -41,11 +41,11 @@ void defaultConstructorTest() {
 void settingStudentValuesTest() {
     Student student1; // User-created object of class type RunnerInfo
     Degree degree = NETWORKING;
-    student1.setStudentIDFunc(01); // how to run class member function
+    student1.setStudentIDFunc("01"); // how to run class member function
     student1.setFirstNameFunc("Mike");
     student1.setLastNameFunc("Jones");
     student1.setEmailFunc("mike_jones@jones.net");
-    student1.setAgeFunc(25);
+    student1.setAgeFunc("25");
     student1.setDegreeTypesFunc(degree);
 
     cout << "**************************" << endl;

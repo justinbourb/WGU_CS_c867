@@ -5,21 +5,21 @@ using namespace std;
 class Student {
 public:
     //getters
-    int getStudentIDFunc();
+    string getStudentIDFunc();
     string getFirstNameFunc();
     string getLastNameFunc();
     string getEmailFunc();
-    int getAgeFunc();
+    string getAgeFunc();
     int getNumDaysFunc(int numDays[]);
     int getDegreeTypesFunc();
     //setters
-    int setStudentIDFunc(int studentID);
-    string setFirstNameFunc(string firstName);
-    string setLastNameFunc(string lastName);
-    string setEmailFunc(string email);
-    int setAgeFunc(int age);
-    int setNumDaysFunc(int numDays);
-    int setDegreeTypesFunc(int degreeIn);
+    void setStudentIDFunc(string studentID);
+    void setFirstNameFunc(string firstName);
+    void setLastNameFunc(string lastName);
+    void setEmailFunc(string email);
+    void setAgeFunc(string age);
+    void setNumDaysFunc(int numDays);
+    void setDegreeTypesFunc(int degreeIn);
     //constuctor
     Student();
     //deconstructor
@@ -27,11 +27,11 @@ public:
     //degreetypes
 
 private:
-    int studentID;
+    string studentID;
     string firstName;
     string lastName;
     string email;
-    int age;
+    string age;
     int numDays;
     int degreeTypes;
 };
