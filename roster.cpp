@@ -10,6 +10,13 @@ const string studentData[] =
 "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
 "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY" };
 
+void printClassInfo() {
+    cout << "C867 - Scripting & Programming Applications" << endl;
+    cout << "Language: C++" << endl;
+    cout << "Student ID: #001200647" << endl;
+    cout << "Name: Justin Bourbonniere" << endl;
+
+}
 //for loop parses csv in studentData and prints a new line for every ,
 //need to upgrade this to pass parameters to create a student object??
 void parseCSVFunc(const string studentData[]) {
@@ -48,6 +55,7 @@ void parseCSVFunc2(const string studentData[]) {
                 tempString = "";
             }
         }
+        //c++ cannot dynamically create Student objects, have to hardcode this with WET code
         if (i == 0) {
             Student student0;
             //0-8 vector items
@@ -125,6 +133,7 @@ void runAllTestsFunc() {
 
 int main() {
 
+    printClassInfo();
     parseCSVFunc2(studentData);
 
     return 0;
