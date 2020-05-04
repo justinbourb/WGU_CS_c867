@@ -9,18 +9,19 @@ public:
     string getFirstNameFunc();
     string getLastNameFunc();
     string getEmailFunc();
-    string getAgeFunc();
+    int getAgeFunc();
     int getNumDaysFunc(int numDays[]);
     int getDegreeTypesFunc();
+    virtual void getDegreeProgram();
     //setters
     void setStudentIDFunc(string studentID);
     void setFirstNameFunc(string firstName);
     void setLastNameFunc(string lastName);
     void setEmailFunc(string email);
-    void setAgeFunc(string age);
+    void setAgeFunc(int age);
     void setNumDaysFunc(int numDays);
     void setDegreeTypesFunc(int degreeIn);
-    void setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, string ageIn, string daysIn1, string daysIn2, string daysIn3, string degreeIn);
+    void setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, int ageIn, int daysIn0, int daysIn1, int daysIn2, string degreeIn);
     //print
     virtual void print();
     //constuctor
@@ -34,10 +35,10 @@ private:
     string firstName;
     string lastName;
     string email;
-    string age;
+    int age;
     string stringDays;
     string stringDegreeTypes;
-    int numDays;
+    int numDays[3];
     int degreeTypes;
 };
 

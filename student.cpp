@@ -10,7 +10,7 @@ Student::Student() {
     firstName = "no name entered";
     lastName = "no name entered";
     email = "no email entered";
-    age = "0000";
+    age = 0000;
     degreeTypes = 0000;
 };
 //destructor
@@ -29,7 +29,7 @@ string Student::getLastNameFunc() {
 string Student::getEmailFunc() {
     return email;
 };
-string Student::getAgeFunc() {
+int Student::getAgeFunc() {
     return age;
 };
 int Student::getNumDaysFunc(int *numDays) {
@@ -37,6 +37,9 @@ int Student::getNumDaysFunc(int *numDays) {
 };
 int Student::getDegreeTypesFunc() {
     return degreeTypes;
+};
+void Student::getDegreeProgram() {
+
 };
 //setters
 void Student::setStudentIDFunc(string idIn) {
@@ -51,27 +54,30 @@ void Student::setLastNameFunc(string nameLast) {
 void Student::setEmailFunc(string enteredMail) {
     email = enteredMail;
 };
-void Student::setAgeFunc(string ageIn) {
+void Student::setAgeFunc(int ageIn) {
     age = ageIn;
 };
 void Student::setNumDaysFunc(int daysIn) {
-    numDays = daysIn;
+    //FIXME or delete?
+    //numDays = daysIn;
 };
 void Student::setDegreeTypesFunc(int degreeIn) {
     degreeTypes = degreeIn;
 };
-void Student::setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, string ageIn, string daysIn1, string daysIn2, string daysIn3, string degreeIn) {
+void Student::setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, int ageIn, int daysIn0, int daysIn1, int daysIn2, string degreeIn) {
     studentID = idIn;
     firstName = nameFirst;
     lastName = nameLast;
     email = enteredMail;
     age = ageIn;
-    stringDays = daysIn1 + "," + daysIn2 + "," + daysIn3;
+    numDays[0] = daysIn0;
+    numDays[1] = daysIn1;
+    numDays[2] = daysIn2;
     stringDegreeTypes = degreeIn;
 };
 //print
 void Student::print() {
     cout << studentID << "     First Name: " << firstName << "     Last Name: " << lastName;
-    cout << "     Age: " << age << "     daysInCourse: {" << stringDays << "} ";
+    cout << "     Age: " << age << "     daysInCourse: {" << numDays[0] <<", " << numDays[1] << ", " << numDays[2] << "} ";
     cout << "Degree Program: " << stringDegreeTypes << endl;
 };
