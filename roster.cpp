@@ -5,6 +5,7 @@ using namespace std;
 #include <vector>
 #include "roster.h"
 #include <string>
+#include <iterator>
 
 const string studentData[] =
 { "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
@@ -62,7 +63,7 @@ void parseCSVFunc2(const string studentData[]) {
             Student student0;
             //0-8 vector items
             //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
-            //stoi converts string1 to int
+            //stoi converts string1 to int, this is required since tempVector is type string
             string string1 = tempVector.at(4);
             int age = stoi(string1);
             string1 = tempVector.at(5);
@@ -156,14 +157,30 @@ void settingStudentValuesTest() {
 
 };
 
+void rosterAddTest() {
+    Roster rosterClass;
+    cout << "**************************" << endl;
+    cout << "Roster.add() Test" << endl;
+    rosterClass.add("A1", "Mike", "Jones", "mj@mj.net", 25, 24, 23, 22, "NETWORKING");
+    cout << "**************************" << endl;
+}
+
 void runAllTestsFunc() {
     defaultConstructorTest();
     settingStudentValuesTest();
+    rosterAddTest();
 };
 
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeIn) {
     Student student;
     student.setAllFunc(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeIn);
+    classRosterArray.push_back(student);
+};
+void Roster::printAll() {
+    //update to loop over vector items from 0 to size-1
+    int size = classRosterArray.size();
+    cout << "vector size :" << size << endl;
+    cout << "age: " << classRosterArray[0].getAgeFunc();
 };
 Roster::Roster() {
     studentID = "0000";
@@ -186,9 +203,9 @@ Roster::~Roster() {
 
 int main() {
     Roster rosterClass;
-    vector<Student> classRosterArray;
     printClassInfo();
-    parseCSVFunc2(studentData);
+    rosterClass.add("A1", "Mike", "Jones", "mj@mj.net", 25, 24, 23, 22, "NETWORKING");
+    rosterClass.printAll();
 
     return 0;
 }
