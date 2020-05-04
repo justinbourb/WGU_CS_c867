@@ -1,5 +1,6 @@
 #include <string>
 #include "student.h"
+#include <iostream>
 using namespace std;
 
 
@@ -39,7 +40,7 @@ int Student::getDegreeTypesFunc() {
 };
 //setters
 void Student::setStudentIDFunc(string idIn) {
-    studentID = idIn;;
+    studentID = idIn;
 };
 void Student::setFirstNameFunc(string nameFirst) {
     firstName = nameFirst;
@@ -58,4 +59,19 @@ void Student::setNumDaysFunc(int daysIn) {
 };
 void Student::setDegreeTypesFunc(int degreeIn) {
     degreeTypes = degreeIn;
+};
+void Student::setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, string ageIn, string daysIn1, string daysIn2, string daysIn3, string degreeIn) {
+    studentID = idIn;
+    firstName = nameFirst;
+    lastName = nameLast;
+    email = enteredMail;
+    age = ageIn;
+    stringDays = daysIn1 + "," + daysIn2 + "," + daysIn3;
+    stringDegreeTypes = degreeIn;
+};
+//print
+void Student::print() {
+    cout << studentID << "     First Name: " << firstName << "     Last Name: " << lastName;
+    cout << "     Age: " << age << "     daysInCourse: {" << stringDays << "} ";
+    cout << "Degree Program: " << stringDegreeTypes << endl;
 };

@@ -20,6 +20,9 @@ public:
     void setAgeFunc(string age);
     void setNumDaysFunc(int numDays);
     void setDegreeTypesFunc(int degreeIn);
+    void setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, string ageIn, string daysIn1, string daysIn2, string daysIn3, string degreeIn);
+    //print
+    virtual void print();
     //constuctor
     Student();
     //deconstructor
@@ -32,6 +35,8 @@ private:
     string lastName;
     string email;
     string age;
+    string stringDays;
+    string stringDegreeTypes;
     int numDays;
     int degreeTypes;
 };

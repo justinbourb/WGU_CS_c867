@@ -2,6 +2,7 @@
 using namespace std;
 #include "student.h"
 #include "degree.h"
+#include <vector>
 
 const string studentData[] =
 { "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
@@ -24,6 +25,63 @@ void parseCSVFunc(const string studentData[]) {
         }
         cout << endl;
     }
+};
+
+void parseCSVFunc2(const string studentData[]) {
+    vector<string> tempVector;
+    string tempString;
+    for (int i = 0; i < 4; i++) {
+        tempVector.clear();
+        for (size_t j = 0; j < studentData[i].length(); j++) {
+            //size_t is the type of .length(), yet another c++ oddity
+            if (studentData[i][j] != ',') {
+                tempString += studentData[i][j];
+            }
+            //push back every csv to tempVector
+            else {
+                tempVector.push_back(tempString);
+                tempString = "";
+            }
+            //push back last value to tempVator
+            if (j == (studentData[i].length()-1)) {
+                tempVector.push_back(tempString);
+                tempString = "";
+            }
+        }
+        if (i == 0) {
+            Student student0;
+            //0-8 vector items
+            //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
+            student0.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
+                tempVector.at(4), tempVector.at(5), tempVector.at(6), tempVector.at(7), tempVector.at(8));
+            student0.print();
+        }
+        if (i == 1) {
+            Student student1;
+            //0-8 vector items
+            //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
+            student1.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
+                tempVector.at(4), tempVector.at(5), tempVector.at(6), tempVector.at(7), tempVector.at(8));
+            student1.print();
+        }
+        if (i == 2) {
+            Student student2;
+            //0-8 vector items
+            //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
+            student2.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
+                tempVector.at(4), tempVector.at(5), tempVector.at(6), tempVector.at(7), tempVector.at(8));
+            student2.print();
+        }
+        if (i == 3) {
+            Student student3;
+            //0-8 vector items
+            //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
+            student3.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
+                tempVector.at(4), tempVector.at(5), tempVector.at(6), tempVector.at(7), tempVector.at(8));
+            student3.print();
+        }
+    }
+
 };
 
 void defaultConstructorTest() {
@@ -67,7 +125,7 @@ void runAllTestsFunc() {
 
 int main() {
 
-    runAllTestsFunc();
+    parseCSVFunc2(studentData);
 
     return 0;
 }
