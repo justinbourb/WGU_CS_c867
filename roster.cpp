@@ -37,9 +37,31 @@ void parseCSVFunc(const string studentData[]) {
     }
 };
 
+Degree degreeConversionFunc(string degreeIn) {
+    //converts studentData string degree into enum Degree type
+    if (degreeIn == "SECURITY") {
+        return SECURITY;
+    }
+    if (degreeIn == "NETWORKING") {
+        return NETWORKING;
+    }
+    return SOFTWARE;
+};
+
+string reverseDegreeConversionFunc(Degree degreeIn) {
+    if (degreeIn == SECURITY) {
+        return "SECURITY";
+    }
+    if (degreeIn == NETWORKING) {
+        return "NETWORKING";
+    }
+    return "SOFTWARE";
+}
+
 void parseCSVFunc2(const string studentData[]) {
     vector<string> tempVector;
     string tempString;
+    Degree degreeConversion;
     for (int i = 0; i < 4; i++) {
         tempVector.clear();
         for (size_t j = 0; j < studentData[i].length(); j++) {
@@ -72,9 +94,10 @@ void parseCSVFunc2(const string studentData[]) {
             int num2 = stoi(string1);
             string1 = tempVector.at(7);
             int num3 = stoi(string1);
+            degreeConversion = degreeConversionFunc(tempVector.at(8));
 
             student0.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
-                age, num1, num2, num3, tempVector.at(8));
+                age, num1, num2, num3, degreeConversion);
             student0.print();
         }
         if (i == 1) {
@@ -86,9 +109,10 @@ void parseCSVFunc2(const string studentData[]) {
             int num1 = stoi(tempVector.at(5));
             int num2 = stoi(tempVector.at(6));
             int num3 = stoi(tempVector.at(7));
+            degreeConversion = degreeConversionFunc(tempVector.at(8));
 
             student1.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
-                age, num1, num2, num3, tempVector.at(8));
+                age, num1, num2, num3, degreeConversion);
             student1.print();
         }
         if (i == 2) {
@@ -100,9 +124,10 @@ void parseCSVFunc2(const string studentData[]) {
             int num1 = stoi(tempVector.at(5));
             int num2 = stoi(tempVector.at(6));
             int num3 = stoi(tempVector.at(7));
+            degreeConversion = degreeConversionFunc(tempVector.at(8));
 
             student2.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
-                age, num1, num2, num3, tempVector.at(8));
+                age, num1, num2, num3, degreeConversion);
             student2.print();
         }
         if (i == 3) {
@@ -114,9 +139,10 @@ void parseCSVFunc2(const string studentData[]) {
             int num1 = stoi(tempVector.at(5));
             int num2 = stoi(tempVector.at(6));
             int num3 = stoi(tempVector.at(7));
+            degreeConversion = degreeConversionFunc(tempVector.at(8));
 
             student3.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
-                age, num1, num2, num3, tempVector.at(8));
+                age, num1, num2, num3, degreeConversion);
             student3.print();
         }
     }
@@ -157,11 +183,14 @@ void settingStudentValuesTest() {
 
 };
 
+
 void rosterAddTest() {
     Roster rosterClass;
     cout << "**************************" << endl;
     cout << "Roster.add() Test" << endl;
     rosterClass.add("A1", "Mike", "Jones", "mj@mj.net", 25, 24, 23, 22, "NETWORKING");
+    rosterClass.add("A2", "Mikey", "Diamonds", "MikeyD@one.net", 21, 20, 19, 18, "SECURITY");
+    rosterClass.printAll();
     cout << "**************************" << endl;
 }
 
@@ -171,24 +200,24 @@ void runAllTestsFunc() {
     rosterAddTest();
 };
 
+
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeIn) {
     Student student;
-    student.setAllFunc(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeIn);
+    Degree degreeConversion = degreeConversionFunc(degreeIn);
+    student.setAllFunc(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeConversion);
     classRosterArray.push_back(student);
 };
 void Roster::printAll() {
     //update to loop over vector items from 0 to size-1
     int size = classRosterArray.size();
-    cout << "vector size :" << size << endl;
-    cout << "age: " << classRosterArray[0].getAgeFunc();
+    for (int i = 0; i < size; i++) {
+        
+        cout << classRosterArray[i].getStudentIDFunc() << "     First Name: " << classRosterArray[i].getFirstNameFunc() << "     Last Name: " << classRosterArray[i].getLastNameFunc();
+        cout << "     Age: " << classRosterArray[i].getAgeFunc() << "     daysInCourse: {" << classRosterArray[i].getNumDaysFunc(0) << ", " << classRosterArray[i].getNumDaysFunc(1) << ", " << classRosterArray[i].getNumDaysFunc(2) << "} ";
+        cout << "Degree Program: " << reverseDegreeConversionFunc(classRosterArray[i].getDegreeTypesFunc()) << endl;
+    }
 };
 Roster::Roster() {
-    studentID = "0000";
-    firstName = "no name entered";
-    lastName = "no name entered";
-    email = "no email entered";
-    age = 0000;
-    degreeTypes = 0000;
 };
 //destructor
 Roster::~Roster() {
@@ -202,10 +231,7 @@ Roster::~Roster() {
 //classRoster.remove(id) // removes a student from the vector classRoster.classRosterArray
 
 int main() {
-    Roster rosterClass;
     printClassInfo();
-    rosterClass.add("A1", "Mike", "Jones", "mj@mj.net", 25, 24, 23, 22, "NETWORKING");
-    rosterClass.printAll();
-
+    rosterAddTest();
     return 0;
 }

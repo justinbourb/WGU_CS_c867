@@ -5,7 +5,9 @@
 enum Degree {
     SECURITY,
     NETWORKING,
-    SOFTWARE
+    SOFTWARE,
+    BLANK
 };
+
 
 #endif

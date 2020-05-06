@@ -1,6 +1,10 @@
 #ifndef roster_h
 #define roster_h
+#include "degree.h"
+#include "student.h"
+#include <vector>;
 using namespace std;
+
 //class Roster
 // Roster classRoster
 // classRoster.classRosterArray <student0,1,2,3,4>
@@ -24,18 +28,9 @@ public:
     vector<Student> classRosterArray;
 
 private:
-    string studentID;
-    string firstName;
-    string lastName;
-    string email;
-    int age;
-    string stringDays;
-    string stringDegreeTypes;
-    int daysInCourse1;
-    int daysInCourse2;
-    int daysInCourse3;
-    int degreeTypes;
+
 };
 
+string reverseDegreeConversionFunc(Degree degreeIn);
 
 #endif

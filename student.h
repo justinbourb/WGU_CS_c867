@@ -1,6 +1,7 @@
 #ifndef student_h
 #define student_h
 using namespace std;
+#include "degree.h"
 
 class Student {
 public:
@@ -10,8 +11,8 @@ public:
     string getLastNameFunc();
     string getEmailFunc();
     int getAgeFunc();
-    int getNumDaysFunc(int numDays[]);
-    int getDegreeTypesFunc();
+    int getNumDaysFunc(int index);
+    Degree getDegreeTypesFunc();
     virtual void getDegreeProgram();
     //setters
     void setStudentIDFunc(string studentID);
@@ -20,8 +21,8 @@ public:
     void setEmailFunc(string email);
     void setAgeFunc(int age);
     void setNumDaysFunc(int numDays);
-    void setDegreeTypesFunc(int degreeIn);
-    void setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, int ageIn, int daysIn0, int daysIn1, int daysIn2, string degreeIn);
+    void setDegreeTypesFunc(Degree degreeIn);
+    void setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, int ageIn, int daysIn0, int daysIn1, int daysIn2, Degree degreeIn);
     //print
     virtual void print();
     //constuctor
@@ -39,7 +40,7 @@ private:
     string stringDays;
     string stringDegreeTypes;
     int numDays[3];
-    int degreeTypes;
+    Degree degreeTypes;
 };
 
 

@@ -1,6 +1,8 @@
 #include <string>
 #include "student.h"
 #include <iostream>
+#include "degree.h"
+#include "roster.h"
 using namespace std;
 
 
@@ -11,7 +13,7 @@ Student::Student() {
     lastName = "no name entered";
     email = "no email entered";
     age = 0000;
-    degreeTypes = 0000;
+    degreeTypes = BLANK;
 };
 //destructor
 Student::~Student() {
@@ -32,10 +34,10 @@ string Student::getEmailFunc() {
 int Student::getAgeFunc() {
     return age;
 };
-int Student::getNumDaysFunc(int *numDays) {
-    return *numDays;
+int Student::getNumDaysFunc(int index) {
+    return numDays[index];
 };
-int Student::getDegreeTypesFunc() {
+Degree Student::getDegreeTypesFunc() {
     return degreeTypes;
 };
 void Student::getDegreeProgram() {
@@ -61,10 +63,10 @@ void Student::setNumDaysFunc(int daysIn) {
     //FIXME or delete?
     //numDays = daysIn;
 };
-void Student::setDegreeTypesFunc(int degreeIn) {
+void Student::setDegreeTypesFunc(Degree degreeIn) {
     degreeTypes = degreeIn;
 };
-void Student::setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, int ageIn, int daysIn0, int daysIn1, int daysIn2, string degreeIn) {
+void Student::setAllFunc(string idIn, string nameFirst, string nameLast, string enteredMail, int ageIn, int daysIn0, int daysIn1, int daysIn2, Degree degreeIn) {
     studentID = idIn;
     firstName = nameFirst;
     lastName = nameLast;
@@ -73,11 +75,11 @@ void Student::setAllFunc(string idIn, string nameFirst, string nameLast, string 
     numDays[0] = daysIn0;
     numDays[1] = daysIn1;
     numDays[2] = daysIn2;
-    stringDegreeTypes = degreeIn;
+    degreeTypes = degreeIn;
 };
 //print
 void Student::print() {
     cout << studentID << "     First Name: " << firstName << "     Last Name: " << lastName;
     cout << "     Age: " << age << "     daysInCourse: {" << numDays[0] <<", " << numDays[1] << ", " << numDays[2] << "} ";
-    cout << "Degree Program: " << stringDegreeTypes << endl;
+    cout << "Degree Program: " << reverseDegreeConversionFunc(degreeTypes) << endl;
 };
