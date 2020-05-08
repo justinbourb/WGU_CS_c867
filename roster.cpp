@@ -153,6 +153,30 @@ void Roster::printAll() {
     cout << endl;
 };
 
+void Roster::printByDegreeProgram(int degreeProgram) {
+    //finish string in if statement degree checks
+    cout << endl << "Showing students in degree program: ";
+    Degree whichDegree;
+    if (degreeProgram == 0) {
+        whichDegree = SECURITY;
+        cout << "SECURITY" << endl << endl;
+    }
+    if (degreeProgram == 1) {
+        whichDegree = NETWORKING;
+        cout << "NETWORKING" << endl << endl;
+    }
+    if (degreeProgram == 2) {
+        whichDegree = SOFTWARE;
+        cout << "SOFTWARE" << endl << endl;
+    }
+    int size = classRosterArray.size();
+    for (int i = 0; i < size; i++) {
+        if (whichDegree == classRosterArray[i].getDegreeTypesFunc()) {
+            classRosterArray[i].print();
+        }
+    }
+};
+
 void Roster::printDaysInCourse(string studentID) {
     int size = classRosterArray.size();
     for (int i = 0; i < size; i++) {
@@ -220,6 +244,7 @@ int main() {
     for (size_t i = 0; i < rosterClass.classRosterArray.size(); i++) {
         rosterClass.printDaysInCourse(rosterClass.classRosterArray[i].getStudentIDFunc());
     }
+    rosterClass.printByDegreeProgram(SOFTWARE);
     
     return 0;
 }

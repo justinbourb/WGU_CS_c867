@@ -16,6 +16,7 @@ class Roster {
 public:
     //getters
     void printAll();
+    void printByDegreeProgram(int degreeProgram);
     void printDaysInCourse(string studentID);
     void printInvalidEmails();
     //setters
