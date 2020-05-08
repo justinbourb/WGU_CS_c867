@@ -58,10 +58,12 @@ string reverseDegreeConversionFunc(Degree degreeIn) {
     return "SOFTWARE";
 }
 
-void parseCSVFunc2(const string studentData[]) {
+Roster parseCSVFunc2(const string studentData[]) {
     vector<string> tempVector;
     string tempString;
     Degree degreeConversion;
+    Roster rosterClass;
+    string tempStringForConversion;
     for (int i = 0; i < 4; i++) {
         tempVector.clear();
         for (size_t j = 0; j < studentData[i].length(); j++) {
@@ -80,6 +82,22 @@ void parseCSVFunc2(const string studentData[]) {
                 tempString = "";
             }
         }
+        //0-8 vector items
+        //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
+        //stoi converts tempStringForConversion to int, this is required since tempVector[i] is type string
+        tempStringForConversion = tempVector.at(4);
+        int age = stoi(tempStringForConversion);
+        tempStringForConversion = tempVector.at(5);
+        int num1 = stoi(tempStringForConversion);
+        tempStringForConversion = tempVector.at(6);
+        int num2 = stoi(tempStringForConversion);
+        tempStringForConversion = tempVector.at(7);
+        int num3 = stoi(tempStringForConversion);
+
+        rosterClass.add(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
+            age, num1, num2, num3, tempVector.at(8));
+        
+        /*
         //c++ cannot dynamically create Student objects, have to hardcode this with WET code
         if (i == 0) {
             Student student0;
@@ -145,8 +163,9 @@ void parseCSVFunc2(const string studentData[]) {
                 age, num1, num2, num3, degreeConversion);
             student3.print();
         }
+        */
     }
-
+    return rosterClass;
 };
 
 void defaultConstructorTest() {
@@ -184,7 +203,7 @@ void settingStudentValuesTest() {
 };
 
 
-void rosterAddTest() {
+Roster rosterAddTest() {
     Roster rosterClass;
     cout << "**************************" << endl;
     cout << "Roster.add() Test" << endl;
@@ -192,6 +211,7 @@ void rosterAddTest() {
     rosterClass.add("A2", "Mikey", "Diamonds", "MikeyD@one.net", 21, 20, 19, 18, "SECURITY");
     rosterClass.printAll();
     cout << "**************************" << endl;
+    return rosterClass;
 }
 
 void runAllTestsFunc() {
@@ -211,7 +231,6 @@ void Roster::printAll() {
     //update to loop over vector items from 0 to size-1
     int size = classRosterArray.size();
     for (int i = 0; i < size; i++) {
-        
         cout << classRosterArray[i].getStudentIDFunc() << "     First Name: " << classRosterArray[i].getFirstNameFunc() << "     Last Name: " << classRosterArray[i].getLastNameFunc();
         cout << "     Age: " << classRosterArray[i].getAgeFunc() << "     daysInCourse: {" << classRosterArray[i].getNumDaysFunc(0) << ", " << classRosterArray[i].getNumDaysFunc(1) << ", " << classRosterArray[i].getNumDaysFunc(2) << "} ";
         cout << "Degree Program: " << reverseDegreeConversionFunc(classRosterArray[i].getDegreeTypesFunc()) << endl;
@@ -232,6 +251,8 @@ Roster::~Roster() {
 
 int main() {
     printClassInfo();
-    rosterAddTest();
+    Roster rosterClass = parseCSVFunc2(studentData);
+    rosterClass.printAll();
+    
     return 0;
 }

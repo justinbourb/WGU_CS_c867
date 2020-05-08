@@ -32,5 +32,6 @@ private:
 };
 
 string reverseDegreeConversionFunc(Degree degreeIn);
+Roster parseCSVFunc2(const string studentData[]);
 
 #endif
