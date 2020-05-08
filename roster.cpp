@@ -18,8 +18,7 @@ void printClassInfo() {
     cout << "C867 - Scripting & Programming Applications" << endl;
     cout << "Language: C++" << endl;
     cout << "Student ID: #001200647" << endl;
-    cout << "Name: Justin Bourbonniere" << endl;
-
+    cout << "Name: Justin Bourbonniere" << endl << endl;
 }
 
 Degree degreeConversionFunc(string degreeIn) {
@@ -145,13 +144,26 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 };
 
 void Roster::printAll() {
-    //update to loop over vector items from 0 to size-1
     int size = classRosterArray.size();
     for (int i = 0; i < size; i++) {
         cout << classRosterArray[i].getStudentIDFunc() << "     First Name: " << classRosterArray[i].getFirstNameFunc() << "     Last Name: " << classRosterArray[i].getLastNameFunc();
         cout << "     Age: " << classRosterArray[i].getAgeFunc() << "     daysInCourse: {" << classRosterArray[i].getNumDaysFunc(0) << ", " << classRosterArray[i].getNumDaysFunc(1) << ", " << classRosterArray[i].getNumDaysFunc(2) << "} ";
         cout << "Degree Program: " << reverseDegreeConversionFunc(classRosterArray[i].getDegreeTypesFunc()) << endl;
     }
+    cout << endl;
+};
+
+void Roster::printDaysInCourse(string studentID) {
+    int size = classRosterArray.size();
+    for (int i = 0; i < size; i++) {
+        string currentID = classRosterArray[i].getStudentIDFunc();
+        if (currentID == studentID) {
+            int averageDays = (classRosterArray[i].getNumDaysFunc(0) + classRosterArray[i].getNumDaysFunc(1) + classRosterArray[i].getNumDaysFunc(2)) / 3;
+            cout << "Student ID: " << studentID << ", averages " << averageDays << " in a course." << endl;
+        }
+    }
+ 
+
 };
 void Roster::printInvalidEmails() {
     int size = classRosterArray.size();
@@ -184,6 +196,7 @@ void Roster::printInvalidEmails() {
             cout << tempEmail << " - Missing a period." << endl;
         }
     }
+    cout << endl;
 
 };
 Roster::Roster() {
@@ -204,6 +217,9 @@ int main() {
     Roster rosterClass = parseCSVFunc2(studentData);
     rosterClass.printAll();
     rosterClass.printInvalidEmails();
+    for (size_t i = 0; i < rosterClass.classRosterArray.size(); i++) {
+        rosterClass.printDaysInCourse(rosterClass.classRosterArray[i].getStudentIDFunc());
+    }
     
     return 0;
 }
