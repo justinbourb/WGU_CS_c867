@@ -11,7 +11,8 @@ const string studentData[] =
 { "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
 "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
 "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
-"A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY" };
+"A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
+"A5,Justin,Bourbonniere,jbourb@wgu.edu,36,20,25,30,SOFTWARE"};
 
 void printClassInfo() {
     cout << "C867 - Scripting & Programming Applications" << endl;
@@ -20,22 +21,6 @@ void printClassInfo() {
     cout << "Name: Justin Bourbonniere" << endl;
 
 }
-//for loop parses csv in studentData and prints a new line for every ,
-//need to upgrade this to pass parameters to create a student object??
-void parseCSVFunc(const string studentData[]) {
-    for (int i = 0; i < 4; i++) {
-        for (size_t j = 0; j < studentData[i].length(); j++) {
-            //size_t is the type of .length(), yet another c++ oddity
-            if (studentData[i][j] != ',') {
-                cout << studentData[i][j];
-            }
-            else {
-                cout << endl;
-            }
-        }
-        cout << endl;
-    }
-};
 
 Degree degreeConversionFunc(string degreeIn) {
     //converts studentData string degree into enum Degree type
@@ -57,116 +42,6 @@ string reverseDegreeConversionFunc(Degree degreeIn) {
     }
     return "SOFTWARE";
 }
-
-Roster parseCSVFunc2(const string studentData[]) {
-    vector<string> tempVector;
-    string tempString;
-    Degree degreeConversion;
-    Roster rosterClass;
-    string tempStringForConversion;
-    for (int i = 0; i < 4; i++) {
-        tempVector.clear();
-        for (size_t j = 0; j < studentData[i].length(); j++) {
-            //size_t is the type of .length(), yet another c++ oddity
-            if (studentData[i][j] != ',') {
-                tempString += studentData[i][j];
-            }
-            //push back every csv to tempVector
-            else {
-                tempVector.push_back(tempString);
-                tempString = "";
-            }
-            //push back last value to tempVator
-            if (j == (studentData[i].length()-1)) {
-                tempVector.push_back(tempString);
-                tempString = "";
-            }
-        }
-        //0-8 vector items
-        //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
-        //stoi converts tempStringForConversion to int, this is required since tempVector[i] is type string
-        tempStringForConversion = tempVector.at(4);
-        int age = stoi(tempStringForConversion);
-        tempStringForConversion = tempVector.at(5);
-        int num1 = stoi(tempStringForConversion);
-        tempStringForConversion = tempVector.at(6);
-        int num2 = stoi(tempStringForConversion);
-        tempStringForConversion = tempVector.at(7);
-        int num3 = stoi(tempStringForConversion);
-
-        rosterClass.add(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
-            age, num1, num2, num3, tempVector.at(8));
-        
-        /*
-        //c++ cannot dynamically create Student objects, have to hardcode this with WET code
-        if (i == 0) {
-            Student student0;
-            //0-8 vector items
-            //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
-            //stoi converts string1 to int, this is required since tempVector is type string
-            string string1 = tempVector.at(4);
-            int age = stoi(string1);
-            string1 = tempVector.at(5);
-            int num1 = stoi(string1);
-            string1 = tempVector.at(6);
-            int num2 = stoi(string1);
-            string1 = tempVector.at(7);
-            int num3 = stoi(string1);
-            degreeConversion = degreeConversionFunc(tempVector.at(8));
-
-            student0.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
-                age, num1, num2, num3, degreeConversion);
-            student0.print();
-        }
-        if (i == 1) {
-            Student student1;
-            //0-8 vector items
-            //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
-             //stoi converts string to int
-            int age = stoi(tempVector.at(4));
-            int num1 = stoi(tempVector.at(5));
-            int num2 = stoi(tempVector.at(6));
-            int num3 = stoi(tempVector.at(7));
-            degreeConversion = degreeConversionFunc(tempVector.at(8));
-
-            student1.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
-                age, num1, num2, num3, degreeConversion);
-            student1.print();
-        }
-        if (i == 2) {
-            Student student2;
-            //0-8 vector items
-            //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
-            //stoi converts string to int
-            int age = stoi(tempVector.at(4));
-            int num1 = stoi(tempVector.at(5));
-            int num2 = stoi(tempVector.at(6));
-            int num3 = stoi(tempVector.at(7));
-            degreeConversion = degreeConversionFunc(tempVector.at(8));
-
-            student2.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
-                age, num1, num2, num3, degreeConversion);
-            student2.print();
-        }
-        if (i == 3) {
-            Student student3;
-            //0-8 vector items
-            //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
-             //stoi converts string to int
-            int age = stoi(tempVector.at(4));
-            int num1 = stoi(tempVector.at(5));
-            int num2 = stoi(tempVector.at(6));
-            int num3 = stoi(tempVector.at(7));
-            degreeConversion = degreeConversionFunc(tempVector.at(8));
-
-            student3.setAllFunc(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
-                age, num1, num2, num3, degreeConversion);
-            student3.print();
-        }
-        */
-    }
-    return rosterClass;
-};
 
 void defaultConstructorTest() {
     Student student1; // User-created object of class type RunnerInfo
@@ -220,6 +95,47 @@ void runAllTestsFunc() {
     rosterAddTest();
 };
 
+Roster parseCSVFunc2(const string studentData[]) {
+    vector<string> tempVector;
+    string tempString;
+    Degree degreeConversion;
+    Roster rosterClass;
+    string tempStringForConversion;
+    for (int i = 0; i < 5; i++) {
+        tempVector.clear();
+        for (size_t j = 0; j < studentData[i].length(); j++) {
+            //size_t is the type of .length(), yet another c++ oddity
+            if (studentData[i][j] != ',') {
+                tempString += studentData[i][j];
+            }
+            //push back every csv to tempVector
+            else {
+                tempVector.push_back(tempString);
+                tempString = "";
+            }
+            //push back last value to tempVator
+            if (j == (studentData[i].length() - 1)) {
+                tempVector.push_back(tempString);
+                tempString = "";
+            }
+        }
+        //0-8 vector items
+        //0. id 1. fname 2. lname 3. email 4-7. days array 8. major
+        //stoi converts tempStringForConversion to int, this is required since tempVector[i] is type string
+        tempStringForConversion = tempVector.at(4);
+        int age = stoi(tempStringForConversion);
+        tempStringForConversion = tempVector.at(5);
+        int num1 = stoi(tempStringForConversion);
+        tempStringForConversion = tempVector.at(6);
+        int num2 = stoi(tempStringForConversion);
+        tempStringForConversion = tempVector.at(7);
+        int num3 = stoi(tempStringForConversion);
+
+        rosterClass.add(tempVector.at(0), tempVector.at(1), tempVector.at(2), tempVector.at(3),
+            age, num1, num2, num3, tempVector.at(8));
+    }
+    return rosterClass;
+};
 
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeIn) {
     Student student;
@@ -227,6 +143,7 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
     student.setAllFunc(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeConversion);
     classRosterArray.push_back(student);
 };
+
 void Roster::printAll() {
     //update to loop over vector items from 0 to size-1
     int size = classRosterArray.size();
@@ -235,6 +152,39 @@ void Roster::printAll() {
         cout << "     Age: " << classRosterArray[i].getAgeFunc() << "     daysInCourse: {" << classRosterArray[i].getNumDaysFunc(0) << ", " << classRosterArray[i].getNumDaysFunc(1) << ", " << classRosterArray[i].getNumDaysFunc(2) << "} ";
         cout << "Degree Program: " << reverseDegreeConversionFunc(classRosterArray[i].getDegreeTypesFunc()) << endl;
     }
+};
+void Roster::printInvalidEmails() {
+    int size = classRosterArray.size();
+    string tempEmail;
+    cout << "Displaying Invalid Emails: " << endl << endl;
+    //check the email address for each Student in classRosterArray for validity
+    for (int i = 0; i < size; i++) {
+        bool hasAtSymbol = false;
+        bool hasPeriodSymbol = false;
+        //get the email address
+        tempEmail = classRosterArray[i].getEmailFunc();
+        //size_t is the type of .length(), yet another c++ oddity
+        for (size_t j = 0; j < tempEmail.length(); j++) {
+            //need @ and . cannot have ' '
+            if (tempEmail[j] == ' ') {
+                //email - No spaces allowed
+                cout << tempEmail << " - No spaces allowed." << endl;
+            }
+            if (tempEmail[j] == '@') {
+                hasAtSymbol = true;
+            }
+            if (tempEmail[j] == '.') {
+                hasPeriodSymbol = true;
+            }
+        }
+        if (hasAtSymbol == false) {
+            cout << tempEmail << " - Missing an @ symbol." << endl;
+        }
+        if (hasPeriodSymbol == false) {
+            cout << tempEmail << " - Missing a period." << endl;
+        }
+    }
+
 };
 Roster::Roster() {
 };
@@ -253,6 +203,7 @@ int main() {
     printClassInfo();
     Roster rosterClass = parseCSVFunc2(studentData);
     rosterClass.printAll();
+    rosterClass.printInvalidEmails();
     
     return 0;
 }

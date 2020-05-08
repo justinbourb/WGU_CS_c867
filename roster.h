@@ -16,6 +16,7 @@ class Roster {
 public:
     //getters
     void printAll();
+    void printInvalidEmails();
     //setters
     //creates a Student student and adds it to the classRoster.classRosterArray
     void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeIn);
