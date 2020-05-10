@@ -29,7 +29,7 @@ public:
     Roster();
     //deconstructor
     ~Roster();
-    Student classRosterArray[5];
+    Student* classRosterArray[5] = { new Student, new Student, new Student, new Student, new Student };
 
 private:
 
