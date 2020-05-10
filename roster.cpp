@@ -17,6 +17,7 @@ const string studentData[] =
 "A5,Justin,Bourbonniere,jbourb@wgu.edu,36,20,25,30,SOFTWARE"};
 
 void printClassInfo() {
+    //this function prints class info to the console
     cout << "C867 - Scripting & Programming Applications" << endl;
     cout << "Language: C++" << endl;
     cout << "Student ID: #001200647" << endl;
@@ -24,7 +25,7 @@ void printClassInfo() {
 }
 
 Degree degreeConversionFunc(string degreeIn) {
-    //converts studentData string degree into enum Degree type
+    //this function converts studentData string degree into enum Degree type
     if (degreeIn == "SECURITY") {
         return SECURITY;
     }
@@ -35,6 +36,7 @@ Degree degreeConversionFunc(string degreeIn) {
 };
 
 string reverseDegreeConversionFunc(Degree degreeIn) {
+    //this function converts Degree degreeIn into a string
     if (degreeIn == SECURITY) {
         return "SECURITY";
     }
@@ -45,6 +47,7 @@ string reverseDegreeConversionFunc(Degree degreeIn) {
 }
 
 void defaultConstructorTest() {
+    //this function tests the default constuctor output
     Student student1; // User-created object of class type RunnerInfo
     cout << "**************************" << endl;
     cout << "Default constructor settings" << endl;
@@ -57,6 +60,7 @@ void defaultConstructorTest() {
     cout << "**************************" << endl;
 };
 void settingStudentValuesTest() {
+    //this function tests settting Student values functions and outputs results
     Student student1; // User-created object of class type RunnerInfo
     Degree degree = NETWORKING;
     student1.setStudentIDFunc("01"); // how to run class member function
@@ -80,6 +84,7 @@ void settingStudentValuesTest() {
 
 
 Roster rosterAddTest() {
+    //this function tests adding values to rosterClass and prints results to console
     Roster rosterClass;
     cout << "**************************" << endl;
     cout << "Roster.add() Test" << endl;
@@ -91,12 +96,17 @@ Roster rosterAddTest() {
 }
 
 void runAllTestsFunc() {
+    //this function runs all tests
     defaultConstructorTest();
     settingStudentValuesTest();
     rosterAddTest();
 };
 
 Roster parseCSVFunc2(const string studentData[]) {
+    //this function accepts a csv string and parses the data to a temp vector.
+    //Next it calls roster.add() on the data.
+    //I don't like calling functions within functions, but the class requirements implies
+    //this is required.
     vector<string> tempVector;
     string tempString;
     Degree degreeConversion;
@@ -139,12 +149,19 @@ Roster parseCSVFunc2(const string studentData[]) {
 };
 
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeIn) {
+    //This function calls degreeConversion on the provided string to create an enum type
+    //Then it adds all the provided data to the classRosterArray.
+    //arrayItemsCounter is a global variable which tracks how many items are set in classRosterArray.
+    //We are required to use an array of pointers and arrayItemsCounter is used to prevent trying to access a pointer with no data set
     Degree degreeConversion = degreeConversionFunc(degreeIn);
     classRosterArray[arrayItemsCounter]->setAllFunc(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeConversion);
     arrayItemsCounter++;
 };
 
 void Roster::printAll() {
+    //This function prints all the items in classRosterArray, as checked via arrayItemsCounter
+    //It only prints items which are not set to NULL
+    //If set to NULL then the items has been deleted and printing it would cause an error
     for (int i = 0; i < arrayItemsCounter; i++) {
         //check for deleted items
         if (classRosterArray[i] != NULL) {
@@ -157,8 +174,15 @@ void Roster::printAll() {
 };
 
 void Roster::printByDegreeProgram(int degreeProgram) {
-    //finish string in if statement degree checks
+    //This function calls classRosterArray.print() based on the degree program provided.
+    //Since this function accepts int type, the series of if statements are required to print the string
+    //equivalent to the console.
+
+    //This function is not required to check for NULL items by course requirements, 
+    //but it should for a real world use case.
+    
     cout << endl << "Showing students in degree program: ";
+    //finish string in if statement degree checks
     Degree whichDegree;
     if (degreeProgram == 0) {
         whichDegree = SECURITY;
@@ -180,6 +204,12 @@ void Roster::printByDegreeProgram(int degreeProgram) {
 };
 
 void Roster::printDaysInCourse(string studentID) {
+    //This function prints the average number of days each student in classRosterArray spends in their courses 
+    //(only 3 values are provided, so division by 3 is hardcoded).
+
+    //This function is not required to check for NULL items by course requirements, 
+    //but it should for a real world use case.
+
     for (int i = 0; i < arrayItemsCounter; i++) {
         string currentID = classRosterArray[i]->getStudentIDFunc();
         if (currentID == studentID) {
@@ -189,6 +219,13 @@ void Roster::printDaysInCourse(string studentID) {
     }
 };
 void Roster::printInvalidEmails() {
+    //This function checks all the emails in classRosterArray and prints out invalid emails.
+    //Course requirements define valid emails as have @ and .
+    //Course requirements define invalid emails as have a space.
+
+    //This function is not required to check for NULL items by course requirements, 
+    //but it should for a real world use case.
+
     string tempEmail;
     cout << "Displaying Invalid Emails: " << endl << endl;
     //check the email address for each Student in classRosterArray for validity
@@ -222,6 +259,9 @@ void Roster::printInvalidEmails() {
 };
 
 void Roster::remove(string studentID) {
+    //This function deletes a pointer from classRosterArray based on studentID.
+    //Next it sets the deleted index to NULL to allow for checking of deleted indexes.
+
     //convert type char to type string and find the array Index(+1)
     string arrayIndexString = studentID;
     string str(arrayIndexString);
