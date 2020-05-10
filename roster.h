@@ -2,7 +2,7 @@
 #define roster_h
 #include "degree.h"
 #include "student.h"
-#include <vector>;
+#include <vector>
 using namespace std;
 
 //class Roster
@@ -20,6 +20,7 @@ public:
     void printDaysInCourse(string studentID);
     void printInvalidEmails();
     //setters
+    void remove(string studentID);
     //creates a Student student and adds it to the classRoster.classRosterArray
     void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeIn);
     //print
@@ -28,7 +29,7 @@ public:
     Roster();
     //deconstructor
     ~Roster();
-    vector<Student> classRosterArray;
+    Student classRosterArray[5];
 
 private:
 

@@ -7,6 +7,8 @@ using namespace std;
 #include <string>
 #include <iterator>
 
+int nextArrayItem = 0;
+
 const string studentData[] =
 { "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
 "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
@@ -137,15 +139,13 @@ Roster parseCSVFunc2(const string studentData[]) {
 };
 
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeIn) {
-    Student student;
     Degree degreeConversion = degreeConversionFunc(degreeIn);
-    student.setAllFunc(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeConversion);
-    classRosterArray.push_back(student);
+    classRosterArray[nextArrayItem].setAllFunc(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeConversion);
+    nextArrayItem++;
 };
 
 void Roster::printAll() {
-    int size = classRosterArray.size();
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < nextArrayItem; i++) {
         cout << classRosterArray[i].getStudentIDFunc() << "     First Name: " << classRosterArray[i].getFirstNameFunc() << "     Last Name: " << classRosterArray[i].getLastNameFunc();
         cout << "     Age: " << classRosterArray[i].getAgeFunc() << "     daysInCourse: {" << classRosterArray[i].getNumDaysFunc(0) << ", " << classRosterArray[i].getNumDaysFunc(1) << ", " << classRosterArray[i].getNumDaysFunc(2) << "} ";
         cout << "Degree Program: " << reverseDegreeConversionFunc(classRosterArray[i].getDegreeTypesFunc()) << endl;
@@ -169,8 +169,7 @@ void Roster::printByDegreeProgram(int degreeProgram) {
         whichDegree = SOFTWARE;
         cout << "SOFTWARE" << endl << endl;
     }
-    int size = classRosterArray.size();
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < nextArrayItem; i++) {
         if (whichDegree == classRosterArray[i].getDegreeTypesFunc()) {
             classRosterArray[i].print();
         }
@@ -178,23 +177,19 @@ void Roster::printByDegreeProgram(int degreeProgram) {
 };
 
 void Roster::printDaysInCourse(string studentID) {
-    int size = classRosterArray.size();
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < nextArrayItem; i++) {
         string currentID = classRosterArray[i].getStudentIDFunc();
         if (currentID == studentID) {
             int averageDays = (classRosterArray[i].getNumDaysFunc(0) + classRosterArray[i].getNumDaysFunc(1) + classRosterArray[i].getNumDaysFunc(2)) / 3;
             cout << "Student ID: " << studentID << ", averages " << averageDays << " in a course." << endl;
         }
     }
- 
-
 };
 void Roster::printInvalidEmails() {
-    int size = classRosterArray.size();
     string tempEmail;
     cout << "Displaying Invalid Emails: " << endl << endl;
     //check the email address for each Student in classRosterArray for validity
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < nextArrayItem; i++) {
         bool hasAtSymbol = false;
         bool hasPeriodSymbol = false;
         //get the email address
@@ -221,6 +216,9 @@ void Roster::printInvalidEmails() {
         }
     }
     cout << endl;
+};
+
+void Roster::remove(string studentID) {
 
 };
 Roster::Roster() {
@@ -241,7 +239,7 @@ int main() {
     Roster rosterClass = parseCSVFunc2(studentData);
     rosterClass.printAll();
     rosterClass.printInvalidEmails();
-    for (size_t i = 0; i < rosterClass.classRosterArray.size(); i++) {
+    for (size_t i = 0; i < nextArrayItem; i++) {
         rosterClass.printDaysInCourse(rosterClass.classRosterArray[i].getStudentIDFunc());
     }
     rosterClass.printByDegreeProgram(SOFTWARE);
