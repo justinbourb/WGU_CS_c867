@@ -165,9 +165,7 @@ void Roster::printAll() {
     for (int i = 0; i < arrayItemsCounter; i++) {
         //check for deleted items
         if (classRosterArray[i] != NULL) {
-            cout << classRosterArray[i]->getStudentIDFunc() << "     First Name: " << classRosterArray[i]->getFirstNameFunc() << "     Last Name: " << classRosterArray[i]->getLastNameFunc();
-            cout << "     Age: " << classRosterArray[i]->getAgeFunc() << "     daysInCourse: {" << classRosterArray[i]->getNumDaysFunc(0) << ", " << classRosterArray[i]->getNumDaysFunc(1) << ", " << classRosterArray[i]->getNumDaysFunc(2) << "} ";
-            cout << "Degree Program: " << reverseDegreeConversionFunc(classRosterArray[i]->getDegreeTypesFunc()) << endl;
+            classRosterArray[i]->print();
         }
     }
     cout << endl;
@@ -286,13 +284,33 @@ Roster::Roster() {
 //destructor
 Roster::~Roster() {
 };
-//class Roster
-// Roster classRoster
-// classRoster.classRosterArray <student0,1,2,3,4>
-//classRoster.printAll() //loops over array and calls print on each
-//classRoster.add() // creates a Student student and adds it to the classRoster.classRosterArray
-    //move Student.addAll to Roster class
-//classRoster.remove(id) // removes a student from the vector classRoster.classRosterArray
+/*
+FIXME:
+1) .  Create the three following classes as subclasses of Student, using the files created in part B:
+
+•   SecurityStudent
+
+•   NetworkStudent
+
+•   SoftwareStudent
+
+Each subclass should override the getDegreeProgram() function. Each subclass should have a data member to hold the enumerated
+type for the degree program using the types defined in part C.
+
+2)  Update Student Class as follows:
+virtual print() to print specific student data
+
+virtual getDegreeProgram()
+
+Note: Leave the implementation of the getDegreeProgram() function empty.
+
+3) Create a student object for each  student in the data table by using the subclasses NetworkStudent, SecurityStudent, and
+SoftwareStudent, and populate classRosterArray.
+
+This appears we can hardcode this.  Dynamically would be better.
+
+
+*/
 
 int main() {
     printClassInfo();
