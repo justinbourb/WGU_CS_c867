@@ -76,7 +76,7 @@ void Student::setAllFunc(string idIn, string nameFirst, string nameLast, string 
 };
 //print
 void Student::print() {
-    cout << studentID << "     First Name: " << firstName << "     Last Name: " << lastName;
-    cout << "     Age: " << age << "     daysInCourse: {" << numDays[0] <<", " << numDays[1] << ", " << numDays[2] << "} ";
-    cout << "Degree Program: " << reverseDegreeConversionFunc(degreeTypes) << endl;
+    cout << getStudentIDFunc() << "     First Name: " << getFirstNameFunc() << "     Last Name: " << getLastNameFunc();
+    cout << "     Age: " << getAgeFunc() << "     daysInCourse: {" << getNumDaysFunc(0) <<", " << getNumDaysFunc(1) << ", " << getNumDaysFunc(2) << "} ";
+    cout << "Degree Program: " << reverseDegreeConversionFunc(getDegreeTypesFunc()) << endl;
 };
