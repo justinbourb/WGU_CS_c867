@@ -284,33 +284,7 @@ Roster::Roster() {
 //destructor
 Roster::~Roster() {
 };
-/*
-FIXME:
-1) .  Create the three following classes as subclasses of Student, using the files created in part B:
 
-•   SecurityStudent
-
-•   NetworkStudent
-
-•   SoftwareStudent
-
-Each subclass should override the getDegreeProgram() function. Each subclass should have a data member to hold the enumerated
-type for the degree program using the types defined in part C.
-
-2)  Update Student Class as follows:
-virtual print() to print specific student data
-
-virtual getDegreeProgram()
-
-Note: Leave the implementation of the getDegreeProgram() function empty.
-
-3) Create a student object for each  student in the data table by using the subclasses NetworkStudent, SecurityStudent, and
-SoftwareStudent, and populate classRosterArray.
-
-This appears we can hardcode this.  Dynamically would be better.
-
-
-*/
 
 int main() {
     printClassInfo();
