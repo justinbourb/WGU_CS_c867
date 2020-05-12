@@ -29,8 +29,8 @@ Degree degreeConversionFunc(string degreeIn) {
     if (degreeIn == "SECURITY") {
         return SECURITY;
     }
-    if (degreeIn == "NETWORKING") {
-        return NETWORKING;
+    if (degreeIn == "NETWORK") {
+        return NETWORK;
     }
     return SOFTWARE;
 };
@@ -40,15 +40,15 @@ string reverseDegreeConversionFunc(Degree degreeIn) {
     if (degreeIn == SECURITY) {
         return "SECURITY";
     }
-    if (degreeIn == NETWORKING) {
-        return "NETWORKING";
+    if (degreeIn == NETWORK) {
+        return "NETWORK";
     }
     return "SOFTWARE";
 }
 
 void defaultConstructorTest() {
     //this function tests the default constuctor output
-    Student student1; // User-created object of class type RunnerInfo
+    NetworkStudent student1; // User-created object of class type RunnerInfo
     cout << "**************************" << endl;
     cout << "Default constructor settings" << endl;
     cout << "ID: " << student1.getStudentIDFunc() << endl;
@@ -61,8 +61,8 @@ void defaultConstructorTest() {
 };
 void settingStudentValuesTest() {
     //this function tests settting Student values functions and outputs results
-    Student student1; // User-created object of class type RunnerInfo
-    Degree degree = NETWORKING;
+    NetworkStudent student1; // User-created object of class type RunnerInfo
+    Degree degree = NETWORK;
     student1.setStudentIDFunc("01"); // how to run class member function
     student1.setFirstNameFunc("Mike");
     student1.setLastNameFunc("Jones");
@@ -187,7 +187,7 @@ void Roster::printByDegreeProgram(int degreeProgram) {
         cout << "SECURITY" << endl << endl;
     }
     if (degreeProgram == 1) {
-        whichDegree = NETWORKING;
+        whichDegree = NETWORK;
         cout << "NETWORKING" << endl << endl;
     }
     if (degreeProgram == 2) {

@@ -40,9 +40,6 @@ int Student::getNumDaysFunc(int index) {
 Degree Student::getDegreeTypesFunc() {
     return degreeTypes;
 };
-void Student::getDegreeProgram() {
-
-};
 //setters
 void Student::setStudentIDFunc(string idIn) {
     studentID = idIn;

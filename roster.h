@@ -3,15 +3,10 @@
 #include "degree.h"
 #include "student.h"
 #include <vector>
+#include "networkStudent.h"
 using namespace std;
 
-//class Roster
-// Roster classRoster
-// classRoster.classRosterArray <student0,1,2,3,4>
-//classRoster.printAll() //loops over array and calls print on each
-//classRoster.add() // 
-    //move Student.addAll to Roster class
-//classRoster.remove(id) // removes a student from the vector classRoster.classRosterArray
+
 class Roster {
 public:
     //getters
@@ -29,8 +24,7 @@ public:
     Roster();
     //deconstructor
     ~Roster();
-    Student* classRosterArray[5] = { new Student, new Student, new Student, new Student, new Student };
-
+    Student* classRosterArray[5] = { new NetworkStudent, new NetworkStudent, new NetworkStudent, new NetworkStudent, new NetworkStudent };
 private:
 
 };

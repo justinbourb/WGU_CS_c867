@@ -2,6 +2,7 @@
 #define student_h
 using namespace std;
 #include "degree.h"
+#include <string>
 
 class Student {
 public:
@@ -13,7 +14,7 @@ public:
     int getAgeFunc();
     int getNumDaysFunc(int index);
     Degree getDegreeTypesFunc();
-    virtual void getDegreeProgram();
+    virtual Degree getDegreeProgram()=0;
     //setters
     void setStudentIDFunc(string studentID);
     void setFirstNameFunc(string firstName);
