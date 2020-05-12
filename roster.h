@@ -5,6 +5,7 @@
 #include <vector>
 #include "networkStudent.h"
 #include "securityStudent.h"
+#include "softwareStudent.h"
 using namespace std;
 
 
@@ -25,7 +26,7 @@ public:
     Roster();
     //deconstructor
     ~Roster();
-    Student* classRosterArray[5] = { new SecurityStudent, new NetworkStudent, new NetworkStudent, new SecurityStudent, new NetworkStudent };
+    Student* classRosterArray[5] = { new SecurityStudent, new NetworkStudent, new SoftwareStudent, new SecurityStudent, new SoftwareStudent };
 private:
 
 };
